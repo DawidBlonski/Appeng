@@ -20,8 +20,6 @@ def home(request):
 
                         return render(request,'appeng/home.html',args)
                 except User_answer.DoesNotExist:
-
-                        messages = 'GO TO ACCOUNT AND CHOICE COURSE'
                         return render(request,'appeng/home.html')
         else:
                 return render(request,'appeng/home.html')
