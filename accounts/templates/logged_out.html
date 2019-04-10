@@ -1,0 +1,18 @@
+{% extends 'appeng/base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>Logged out</h1>
+    <p>You have logout</p>
+</div>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+
+        <a class="nav-link" href="{% url 'appeng:home' %}" >  BACK TO HOME <span class="sr-only">(current)</span></a>
+      </li>
+
+    </ul>
+  </div>
+{% endblock %}

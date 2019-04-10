@@ -1,0 +1,87 @@
+{% extends 'appeng/base.html' %}
+
+
+
+
+{% block content %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">DJANGO APPENG</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+
+
+
+
+      {% if user.is_authenticated %}
+      
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'accounts:logout' %}">LOGOUT</a>
+      </li>
+    </ul>
+  </div>
+
+
+  {% else %}
+   <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+
+        <a class="nav-link" href="{% url 'accounts:login' %}" id="login">LOGIN <span class="sr-only">(current)</span></a>
+      </li>
+        <li class="nav-item">
+        <a class="nav-link" href="{% url 'accounts:register' %}" id =  "register">REGISTER</a>
+      </li>
+    </ul>
+  </div>
+  {% endif %}
+</nav>
+<body>
+
+
+
+     {% if user.is_authenticated %}
+
+  {% if user_answers is not None %}
+
+      
+       <center>
+        {{user_score}}/{{win_score}}
+       <size = 20><h1 class="display-1"><font size="25"> {{words}} </font></h1>
+</a>
+      <a href="{% url 'appeng:change_answer' operation='add' pk=words.pk %}">
+      <button type="button" class="btn btn-success">Know</button>
+</a>
+</a>
+      <a href="{% url 'appeng:change_answer' operation='remove' pk=words.pk %}">
+      <button type="button" class="btn btn-danger">Dont know</button>
+</a>
+{% else %}
+<center>
+<a1>Welcome to my site press button to start course</a1>
+    <a href="{% url 'appeng:set_course' %}">
+     
+     <br>
+      <button type="button" class="btn btn-success" id = "1000">START</button>
+    </a>
+</center>
+{% endif %}
+
+
+
+{% else %}
+  WELCOME TO MY SITE 
+{% endif %}
+
+
+
+
+
+
+{% endblock content %}
+
+
