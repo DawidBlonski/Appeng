@@ -27,8 +27,7 @@ def home(request):
             return render(request, "appeng/home.html", args)
         except User_answer.DoesNotExist:
             return render(request, "appeng/home.html")
-    else:
-        return render(request, "appeng/home.html")
+    return render(request, "appeng/home.html")
 
 
 @login_required
