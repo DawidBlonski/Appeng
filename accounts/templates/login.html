@@ -2,7 +2,7 @@
 
 {% extends 'appeng/base.html' %}
 
-{% block content %}
+{% block navbar %}
 <nav>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
@@ -13,7 +13,8 @@
   </div>
 </nav>
 <body>
-
+{% endblock navbar %}
+{% block content %}
 <h2>Login</h2>
 <form method="post">
   {% csrf_token %}
