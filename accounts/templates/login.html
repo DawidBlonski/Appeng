@@ -3,10 +3,24 @@
 {% extends 'appeng/base.html' %}
 
 {% block content %}
-    <h2>Login</h2>
+<nav>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'appeng:home' %}">Home</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<body>
+
+<h2>Login</h2>
 <form method="post">
   {% csrf_token %}
   {{ form.as_p }}
   <button type="submit" id="submit">Login</button>
 </form>
+</body>
+
+
 {% endblock content %}
