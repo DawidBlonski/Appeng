@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, HttpResponse
 from appeng.models import User_answer, Words, User_anwer_QuerySet
 from django.contrib.auth.decorators import login_required
-
+from django.contrib import messages
 
 def home(request):
     win_score = User_anwer_QuerySet.course_final_score(current_user=request.user)
@@ -34,6 +34,7 @@ def home(request):
 def set_course(request):
     current_user = request.user
     User_answer.objects.get_or_create(current_user=current_user, answer=False)
+    messages.success(request, 'Here we go')
     return redirect("appeng:home")
 
 

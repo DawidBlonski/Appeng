@@ -46,11 +46,11 @@
        <size = 20><h1 class="display-1"><font size="25"> {{words}} </font></h1>
 </a>
       <a href="{% url 'appeng:change_answer' operation='add' pk=words.pk %}">
-      <button type="button" class="btn btn-success">Know</button>
+      <button type="button" class="btn btn-success">Learned</button>
 </a>
 </a>
       <a href="{% url 'appeng:change_answer' operation='remove' pk=words.pk %}">
-      <button type="button" class="btn btn-danger">Dont know</button>
+      <button type="button" class="btn btn-danger">To learn</button>
 </a>
 {% else %}
 <center>
@@ -75,5 +75,4 @@
 
 
 {% endblock content %}
-
 

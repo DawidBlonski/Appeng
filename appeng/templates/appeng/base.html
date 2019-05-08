@@ -14,7 +14,19 @@
          </button>
     </nav>
 
+
+
     <body style="background-color:powderblue;">
+
+
+{% for message in messages %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  </button>
+  <center><strong>{{ message }}</strong></center>
+</div>
+
+  </div>
+{% endfor %}
     {% block content %}{% endblock content %}
     </body>
 
