@@ -1,7 +1,7 @@
 from django.contrib.auth.signals import user_logged_in, user_logged_out
 from django.dispatch import receiver
 from django.contrib import messages
-
+from django.shortcuts import redirect
 
 @receiver(user_logged_in)
 def login_signal(sender, user, request, **kwargs):
