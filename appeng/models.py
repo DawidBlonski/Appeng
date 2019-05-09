@@ -32,7 +32,7 @@ class User_anwer_QuerySet(models.QuerySet):
 
 
 class User_answer(models.Model):
-    words = models.ManyToManyField(Words, blank=True)
+    words = models.ManyToManyField(Words, blank=True,related_name = 'user_words')
     current_user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
     answer = models.BooleanField(default=True)
 

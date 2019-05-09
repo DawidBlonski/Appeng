@@ -1,21 +1,22 @@
 from django.views.generic.edit import UpdateView
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, HttpResponse
-from appeng.models import User_answer, Words, User_anwer_QuerySet
+from appeng.models import User_anwer_QuerySet as Qs
+from appeng.models import User_answer, Words
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
+
 def home(request):
-    win_score = User_anwer_QuerySet.course_final_score(current_user=request.user)
+    current_user = request.user
+    win_score = Qs.course_final_score(current_user)
     if request.user.is_authenticated:
         try:
-            user_answers = User_anwer_QuerySet.get_user_answer(
-                current_user=request.user
-            )
-            words = User_anwer_QuerySet.get_user_not_answer(current_user=request.user)
-            user_score = User_anwer_QuerySet.score_user(current_user=request.user)
+            user_answers = Qs.get_user_answer(current_user)
+            words = Qs.get_user_not_answer(current_user)
+            user_score = Qs.score_user(current_user)
             if user_score >= win_score:
-                messages = "YOU WIN"
+                a = User_answer.objects.get(current_user=current_user).words.clear()
                 return render(request, "appeng/home.html")
             args = {
                 "words": words,
@@ -34,7 +35,7 @@ def home(request):
 def set_course(request):
     current_user = request.user
     User_answer.objects.get_or_create(current_user=current_user, answer=False)
-    messages.success(request, 'Here we go')
+    messages.success(request, "Here we go")
     return redirect("appeng:home")
 
 
