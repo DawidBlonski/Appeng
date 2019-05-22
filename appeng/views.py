@@ -1,6 +1,4 @@
-from django.views.generic.edit import UpdateView
-from django.contrib.auth.models import User
-from django.shortcuts import render, redirect, HttpResponse
+from django.shortcuts import render, redirect
 from appeng.models import User_anwer_QuerySet as Qs
 from appeng.models import User_answer, Words
 from django.contrib.auth.decorators import login_required
@@ -14,7 +12,7 @@ def home(request):
         try:
             user_answers = Qs.get_user_answer(current_user)
             words = Qs.get_user_not_answer(current_user)
-            user_score = Qs.score_user(current_user)
+            user_score = User_answer.objects.get(current_user=current_user).user_score
             if user_score >= win_score:
                 a = User_answer.objects.get(current_user=current_user).words.clear()
                 return render(request, "appeng/home.html")

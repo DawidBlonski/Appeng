@@ -21,9 +21,6 @@ class User_anwer_QuerySet(models.QuerySet):
         words = Words.objects.exclude(id__in=user_answers).order_by("?").first()
         return words
 
-    @classmethod
-    def score_user(cls, current_user):
-        return cls.get_user_answer(current_user=current_user).count()
 
     @classmethod
     def course_final_score(cls, current_user):
@@ -35,7 +32,7 @@ class User_answer(models.Model):
     words = models.ManyToManyField(Words, blank=True,related_name = 'user_words')
     current_user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
     answer = models.BooleanField(default=True)
-
+    user_score = models.PositiveIntegerField(db_index=True, default=0)
     def __str__(self):
         return str(self.current_user)
 
