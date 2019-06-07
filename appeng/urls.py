@@ -1,7 +1,4 @@
 from appeng import views
-from django.conf.urls import url
-from django.contrib.auth.views import login, logout
-import request
 from django.urls import path
 
 

@@ -1,6 +1,5 @@
-from django.shortcuts import render, redirect, HttpResponse
+from django.shortcuts import render, redirect
 from accounts.forms import RegistrationForm
-from django.urls import reverse
 from django.contrib import messages
 
 

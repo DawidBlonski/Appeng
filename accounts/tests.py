@@ -3,9 +3,7 @@ from django.contrib.auth.models import User
 from django.urls import reverse, reverse_lazy
 from appeng.models import Words, User_answer
 from selenium import webdriver
-from time import sleep
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
-from seleniumlogin import force_login
 
 
 class Test_vievs_status(TestCase):
