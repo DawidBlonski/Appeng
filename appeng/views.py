@@ -14,7 +14,7 @@ def home(request):
             words = Qs.get_user_not_answer(current_user)
             user_score = User_answer.objects.get(current_user=current_user).user_score
             if user_score >= win_score:
-                a = User_answer.objects.get(current_user=current_user).words.clear()
+                User_answer.objects.get(current_user=current_user).words.clear()
                 return render(request, "appeng/home.html")
             args = {
                 "words": words,
