@@ -19,4 +19,4 @@ def register(request):
     else:
         form = RegistrationForm()
         args = {"form": form}
-        return render(request, "register.html", args)
+        return render(request, "accounts/register.html", args)

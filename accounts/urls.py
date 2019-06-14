@@ -4,7 +4,7 @@ from django.contrib.auth.views import LoginView,LogoutView
 
 app_name = "accounts"
 urlpatterns = [
-    path("logout/", LogoutView,{'next_page': 'appeng:home'},name="logout"),
-    path("login/", LoginView, {"template_name": "login.html"}, name="login"),
-    path("register/", views.register, name="register"),
-]
+    path("logout/", LogoutView.as_view(next_page = "appeng:home"),name="logout"),
+    path('login/', LoginView.as_view(template_name='accounts/login.html'),name='login'),
+    path("register/", views.register, name="register"),]
+
