@@ -5,7 +5,8 @@ activate:
 	bash -c "source venv/bin/activate"
 
 environ:
-	set -o allexport; source .env; set +o allexport
+
+	bash -c "set -o allexport; source .env; set +o allexport"
 
 superuser:
 	python backend/manage.py createsuperuser
@@ -20,3 +21,5 @@ run:
 test:
 	python backend/manage.py test users
 
+up:
+	docker-compose up

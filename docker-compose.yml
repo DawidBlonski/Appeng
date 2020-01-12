@@ -6,8 +6,6 @@ services:
   postgres:
     container_name: eng-app
     image: postgres:11
-    volumes:
-      - postgres_volume:/var/lib/postgresql/data/
     env_file:
       - .env
     ports:
