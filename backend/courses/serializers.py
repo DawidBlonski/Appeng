@@ -1,9 +1,11 @@
-from django.contrib.auth import get_user_model
 from rest_framework import serializers
 from .models import Courses
 from users.models import Users
 
-
+class CourseList(serializers.ModelSerializer):
+    class Meta:
+        model = Courses
+        fields = ('name',)
 
 class UserCorsesSerializer(serializers.ModelSerializer):
 
