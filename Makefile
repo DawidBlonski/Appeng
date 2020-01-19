@@ -4,9 +4,9 @@ venv:
 activate:
 	bash -c "source venv/bin/activate"
 
-environ:
 
-	bash -c "set -o allexport; source .env; set +o allexport"
+environ:
+	bash -c "set -o allexport; source .env; set +o allexport;"
 
 superuser:
 	python backend/manage.py createsuperuser

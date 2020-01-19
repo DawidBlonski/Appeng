@@ -1,7 +1,6 @@
 from django.db import models
 from courses.models import Words,Courses
 from django.contrib.auth import get_user_model
-# Create your models here.
 
 user = get_user_model()
 
