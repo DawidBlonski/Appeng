@@ -6,7 +6,7 @@ activate:
 
 
 environ:
-	bash -c "set -o allexport; source .env; set +o allexport;"
+	set -o allexport; source .env; set +o allexport;
 
 superuser:
 	python backend/manage.py createsuperuser
@@ -23,3 +23,5 @@ test:
 
 up:
 	docker-compose up
+reset:
+	python backend/manage.py flush

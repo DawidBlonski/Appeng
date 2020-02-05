@@ -5,9 +5,9 @@ from django.contrib.auth import get_user_model
 user = get_user_model()
 
 class Answers(models.Model):
-    user = models.OneToOneField(user,on_delete=models.DO_NOTHING)
-    cours = models.OneToOneField(Courses,on_delete=models.DO_NOTHING)
-    word = models.OneToOneField(Words,on_delete=models.DO_NOTHING)
+    user = models.ForeignKey(user,on_delete=models.DO_NOTHING)
+    cours = models.ForeignKey(Courses,on_delete=models.DO_NOTHING)
+    word = models.ManyToManyField((Words))
     answer = models.BooleanField(default=False)
 
 
