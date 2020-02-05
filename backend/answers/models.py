@@ -7,7 +7,7 @@ user = get_user_model()
 class Answers(models.Model):
     user = models.ForeignKey(user,on_delete=models.DO_NOTHING)
     cours = models.ForeignKey(Courses,on_delete=models.DO_NOTHING)
-    word = models.ManyToManyField((Words))
+    word = models.ForeignKey(Words,on_delete=models.DO_NOTHING)
     answer = models.BooleanField(default=False)
 
 
