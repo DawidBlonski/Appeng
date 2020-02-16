@@ -9,7 +9,7 @@ from .models import Courses
 class CourseList(ListAPIView):
     serializer_class = CourseList
     queryset = Courses.objects.all()
-    #permission_classes = (permissions.IsAuthenticated,)
+    permission_classes = (permissions.IsAuthenticated,)
 
 
 class UpdateUserCourse(UpdateAPIView):
