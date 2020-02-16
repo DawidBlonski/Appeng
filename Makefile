@@ -4,9 +4,8 @@ venv:
 activate:
 	bash -c "source venv/bin/activate"
 
-
 environ:
-	set -o allexport; source .env; set +o allexport;
+	bash -c "set -o allexport; source .env; set +o allexport;"
 
 superuser:
 	python backend/manage.py createsuperuser
@@ -23,5 +22,10 @@ test:
 
 up:
 	docker-compose up
-reset:
-	python backend/manage.py flush
+
+redis_cmd:
+	docker exec -it appeng_redis_1 sh
+
+postgres_cmd:
+	docker exec -it eng-app sh
+

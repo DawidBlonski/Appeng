@@ -1,8 +1,8 @@
 from django.db import models
 from courses.models import Words,Courses
 from django.contrib.auth import get_user_model
-
 user = get_user_model()
+
 
 class Answers(models.Model):
     user = models.ForeignKey(user,on_delete=models.DO_NOTHING)
@@ -13,3 +13,5 @@ class Answers(models.Model):
 
     def __str__(self):
         return f"{self.user} {self.cours} {self.word} {self.answer}"
+
+

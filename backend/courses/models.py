@@ -1,5 +1,11 @@
 from django.db import models
+from django.db.models.aggregates import Count
 from users.models import Users
+from random import randint
+
+
+
+
 
 class Words(models.Model):
     word = models.CharField(max_length=100)
