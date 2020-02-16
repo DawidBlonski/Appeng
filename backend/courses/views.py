@@ -23,8 +23,6 @@ class SetCourse(APIView):
     serializer_class = CourseList
 
     def get(self,requests,name):
-        user = self.request.user
-        cache.set('current_user',user)
         cache.set('course',name)
         return HttpResponse('')
 
