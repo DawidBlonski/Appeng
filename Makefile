@@ -18,7 +18,8 @@ run:
 	python backend/manage.py runserver
 
 test:
-	python backend/manage.py test users
+	python backend/manage.py test answers
+
 
 up:
 	docker-compose up

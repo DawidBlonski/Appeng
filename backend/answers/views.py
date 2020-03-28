@@ -13,12 +13,12 @@ class GetWord(ListAPIView):
         name = cache.get('course')
         user = self.request.user
         try:
-            cours = Courses.objects.get(name=name).id
+            course = Courses.objects.get(name=name).id
         except Courses.DoesNotExist:
-            cours = None
+            course = None
 
-        if cours and user:
-            answers = Answers.objects.filter(user=user, answer=False, cours=cours)
+        if course and user:
+            answers = Answers.objects.filter(user=user, answer=False, course=course)
             answers_word = answers.values('word')
             answers_count = answers_word.count() - 1
             rand = randint(0, answers_count)
