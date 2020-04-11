@@ -9,7 +9,6 @@ class Word(serializers.ModelSerializer):
         fields = ('word',)
 
 class GetWord(serializers.ModelSerializer):
-    word = Word(read_only=True)
     class Meta:
         model = Answers
         fields = ('word',)

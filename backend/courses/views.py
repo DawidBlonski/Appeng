@@ -27,15 +27,13 @@ class SetUserCourse(UpdateAPIView):
         curren_user_id = request.user.id
         user_is_in_course = instance.__class__.objects.values_list('user').filter(user=curren_user_id)
         if user_is_in_course:
+            Answers.create_answers(instance,request.user)
             instance.user.remove(curren_user_id)
-            return Response('1')
+            return Response('')
         else:
+            Answers.delete_answers(instance,request.user)
             instance.user.add(curren_user_id)
-            return Response('1')
-
-
-
-
+            return Response('')
 
 
 class CacheCourse(APIView):
