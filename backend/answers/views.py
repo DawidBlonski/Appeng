@@ -1,35 +1,48 @@
 from django.core.cache import cache
 from .models import Answers
-from courses.models import Courses,Words
-from .serializers import GetWord,Word
+from courses.models import Courses
+from .serializers import GetWord
 from rest_framework.generics import GenericAPIView
-from random import randint
+from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework import permissions
 
 
 # Create your views here.
 class GetWord(GenericAPIView):
-    serializer_class = Word
+    serializer_class = GetWord
+    permission_classes = (permissions.IsAuthenticated,)
 
+    @staticmethod
+    def get_active_course():
+        course_id = cache.get('course')
+        return course_id
 
     def get(self, request, *args, **kwargs):
-        name = cache.get('course')
+        course_id = self.get_active_course()
         user = self.request.user
-        try:
-            course = Courses.objects.get(name=name).id
-        except Courses.DoesNotExist:
-            course = None
-        if course and user:
-            answers = Answers.objects.filter(user=user, answer=False, course=course)
-            answers_word = answers.values('word')
-            answers_count = answers_word.count() - 1
-            rand = randint(0, answers_count)
-            word = answers_word[rand]
-            word = Words.objects.filter(id=word['word']).values_list('id',flat=True)
-            serializer = self.get_serializer(word)
-            return Response(serializer.data)
+        if not course_id:
+            return Response('You are not have active course')
+        if Courses.user_in_course(user=user, course=course_id):
+            random_word = Answers.objects.random(user=user, course=course_id)
+            if random_word:
+                serializer = self.get_serializer(random_word)
+                return Response(serializer.data)
+            else:
+                return Response('YOU FINISHED COURSE')
 
         else:
-            return Response('')
+            return Response('You are not subscribed this course')
 
 
+class ChangeAnswer(APIView):
+    def get(self, request, word_id):
+        user = self.request.user
+        if user.is_authenticated:
+            answer_query = Answers.objects.filter(user=user, word_id=word_id)
+            answer_value = answer_query.values_list('answer', flat=True)
+            if answer_value[0]:
+                return Response(answer_value)
+            else:
+                answer_value = answer_query.update(answer=True)
+                return Response(answer_value)

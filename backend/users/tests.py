@@ -9,7 +9,10 @@ LOGIN_URL = reverse('users:login')
 
 User = get_user_model()
 
-def create_sample_user(email='test@test.com', username='test', password='testpass'):
+
+def create_sample_user(
+    email='test@test.com', username='test', password='testpass'
+):
     return User.objects.create_user(email, username, password)
 
 
@@ -41,8 +44,3 @@ class PublicUserApiTests(TestCase):
 
         self.assertIn('token', response.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-
-
-
-
-

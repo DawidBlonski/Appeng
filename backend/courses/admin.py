@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Words,Courses
+from .models import Words, Courses
 
 
 @admin.register(Words)
