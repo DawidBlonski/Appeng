@@ -5,7 +5,7 @@ activate:
 	bash -c "source venv/bin/activate"
 
 environ:
-	bash "set -o allexport; source .env; set +o allexport;"
+	shell -c "set -o allexport; source .env; set +o allexport;"
 
 superuser:
 	python manage.py createsuperuser
@@ -16,7 +16,7 @@ migration:
 fake_migration:
 	python manage.py migrate --fake
 run:
-	python manage.py runserver
+	python manage.py runserver 127.0.0.1:8000
 
 test:
 	python manage.py test answers

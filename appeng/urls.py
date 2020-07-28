@@ -21,4 +21,5 @@ urlpatterns = [
     path('api/users/', include('backend.users.urls')),
     path('api/courses/', include('backend.courses.urls')),
     path('api/answer/', include('backend.answers.urls')),
+    path('',include('frontend.urls'))
 ]
