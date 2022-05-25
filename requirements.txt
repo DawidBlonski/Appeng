@@ -12,7 +12,7 @@ isort==4.3.21
 pathspec==0.8.0
 psycopg2-binary==2.8.5
 pycrypto==2.6.1
-PyJWT==1.7.1
+PyJWT==2.4.0
 python-redis-lock==3.5.0
 pytz==2020.1
 redis==3.5.1
